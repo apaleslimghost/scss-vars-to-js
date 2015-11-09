@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Parse vars from scss into a js object",
   "main": "index.js",
+  "bin": "bin.js",
   "scripts": {
     "test": "mocha"
   },
