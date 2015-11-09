@@ -1,6 +1,6 @@
 {
   "name": "scss-vars-to-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Parse vars from scss into a js object",
   "main": "index.js",
   "bin": "bin.js",
