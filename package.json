@@ -1,0 +1,29 @@
+{
+  "name": "scss-vars-to-js",
+  "version": "1.0.0",
+  "description": "Parse vars from scss into a js object",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quarterto/scss-vars-to-js.git"
+  },
+  "keywords": [
+    "scss",
+    "parse",
+    "json"
+  ],
+  "author": "Matt Brennan <matt@153.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quarterto/scss-vars-to-js/issues"
+  },
+  "homepage": "https://github.com/quarterto/scss-vars-to-js",
+  "dependencies": {
+    "gonzales-pe": "^3.2.1",
+    "unquote": "^1.1.0",
+    "zin": "^1.0.0"
+  }
+}
