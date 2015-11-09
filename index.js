@@ -3,7 +3,10 @@ var unquote = require('unquote');
 var zin = require('zin');
 
 function parseParens(parens) {
-	var delim = parens.get(1).content;
+	var delim = parens.content.filter(function(node) {
+		return node.type !== 'space';
+	})[1].content;
+
 	switch(delim) {
 		case ':': return parseMap(parens);
 		case ',': return parseArray(parens);
