@@ -23,7 +23,7 @@ function parseMap(parens) {
 		return node.type !== 'operator' && node.type !== 'space';
 	});
 
-	for(var i = 0; i <= apropos.length/2; i += 2) {
+	for(var i = 0; i < apropos.length; i += 2) {
 		map[parseValue(apropos[i])] = parseValue(apropos[i + 1]);
 	}
 
