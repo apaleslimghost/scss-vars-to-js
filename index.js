@@ -17,10 +17,10 @@ function parseParens(parens) {
 function parseMap(parens) {
 	var map = {};
 	var apropos = parens.content.filter(function(node) {
-		return node.content !== ':' && node.type !== 'space';
+		return node.type !== 'operator' && node.type !== 'space';
 	});
 
-	for(var i = 0; i < apropos.length/2; i += 2) {
+	for(var i = 0; i <= apropos.length/2; i += 2) {
 		map[parseValue(apropos[i])] = parseValue(apropos[i + 1]);
 	}
 
@@ -44,14 +44,26 @@ function parseIdent(ident) {
 	return ident.content;
 }
 
+function parseNumber(number) {
+	return parseFloat(number.content);
+}
+
+function parseColor(color) {
+	return '#' + parseIdent(color);
+}
+
 function parseValue(valNode) {
-	return {
+	return ({
 		parentheses: parseParens,
 		number: parseNumber,
 		color: parseColor,
 		string: parseString,
 		ident: parseIdent,
-	}[valNode.type](valNode)
+	}[valNode.type] || (function () {
+		var e = new Error('Unexpected node type ' + valNode.type);
+		e.node = valNode;
+		throw e;
+	}))(valNode)
 }
 
 module.exports = function(scssString) {
@@ -78,5 +90,6 @@ module.exports = function(scssString) {
 
 			e.message += '\n\n' + point;
 		}
+		throw e;
 	}
-}
+};
