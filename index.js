@@ -93,7 +93,7 @@ module.exports = function(scssString) {
 					line: e.node.start.line - 1,
 				});
 			} catch(ze) {
-				point = scssString[e.node.start.line - 1];
+				point = scssString.split('\n')[e.node.start.line - 1] + '\n';
 			}  
 
 			e.message += '\n\n' + point;
