@@ -85,11 +85,16 @@ module.exports = function(scssString) {
 		return out;
 	} catch(e) {
 		if(e.node) {
-			var point = zin({
-				str: scssString,
-				column: e.node.start.column,
-				line: e.node.start.line - 1,
-			});
+			var point;
+			try {
+				point = zin({
+					str: scssString,
+					column: e.node.start.column,
+					line: e.node.start.line - 1,
+				});
+			} catch(ze) {
+				point = scssString[e.node.start.line - 1];
+			}  
 
 			e.message += '\n\n' + point;
 		}
