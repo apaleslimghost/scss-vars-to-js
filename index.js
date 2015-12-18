@@ -56,7 +56,13 @@ function parseColor(color) {
 }
 
 function parseDimension(dimension) {
-	return parseNumber(dimension.first('number')) + parseIdent(dimension.first('ident'));
+	return {
+		size: parseNumber(dimension.first('number')),
+		type: parseIdent(dimension.first('ident')),
+		toJSON: function() {
+			return this.size + this.type;
+		}
+	};
 }
 
 function parseValue(valNode) {
