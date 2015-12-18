@@ -55,6 +55,10 @@ function parseColor(color) {
 	return '#' + parseIdent(color);
 }
 
+function parseDimension(dimension) {
+	return parseNumber(dimension.first('number')) + parseIdent(dimension.first('ident'));
+}
+
 function parseValue(valNode) {
 	return ({
 		parentheses: parseParens,
@@ -62,6 +66,7 @@ function parseValue(valNode) {
 		color: parseColor,
 		string: parseString,
 		ident: parseIdent,
+		dimension: parseDimension,
 	}[valNode.type] || (function () {
 		var e = new Error('Unexpected node type ' + valNode.type);
 		e.node = valNode;
